@@ -48,6 +48,17 @@ promoBg.style.backgroundImage = `url(../img/bg.jpg)`;
 const sortMovie = movieDB.movies.sort();
 
 const promoItem = document.querySelectorAll('.promo__interactive-item');
+// promoItem.forEach((item, index) => {
+//     item.textContent = `${index + 1} ${sortMovie[index]}`;
+// })
+
+const movieList = document.querySelector('.promo__interactive-list');
+movieList.innerHTML = '';
+
 promoItem.forEach((item, index) => {
-    item.textContent = `${index + 1} ${sortMovie[index]}`;
+    movieList.innerHTML += `
+         <li class="promo__interactive-item"> ${index +1} ${sortMovie[index]} 
+            <div class="delete"></div>
+        </li>
+    `
 })
