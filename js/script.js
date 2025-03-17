@@ -43,3 +43,11 @@ promoGenre.textContent = 'Драма';
 
 const promoBg = document.querySelector('.promo__bg');
 promoBg.style.backgroundImage = `url(../img/bg.jpg)`;
+
+// четвертая задача + пятая задача ---------- выполнено
+const sortMovie = movieDB.movies.sort();
+
+const promoItem = document.querySelectorAll('.promo__interactive-item');
+promoItem.forEach((item, index) => {
+    item.textContent = `${index + 1} ${sortMovie[index]}`;
+})
