@@ -45,6 +45,7 @@ const promoBg = document.querySelector('.promo__bg');
 promoBg.style.backgroundImage = `url(../img/bg.jpg)`;
 
 // четвертая задача + пятая задача ---------- выполнено
+
 const sortMovie = movieDB.movies.sort();
 
 const promoItem = document.querySelectorAll('.promo__interactive-item');
@@ -52,35 +53,55 @@ const promoItem = document.querySelectorAll('.promo__interactive-item');
 //     item.textContent = `${index + 1} ${sortMovie[index]}`;
 // })
 
-const movieList = document.querySelector('.promo__interactive-list');
-movieList.innerHTML = '';
+function filterMovie() {
+    const movieList = document.querySelector('.promo__interactive-list');
+    movieList.innerHTML = '';
 
-promoItem.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.className = "promo__interactive-item";
-    li.dataset.index = index;
-    li.innerHTML = `
-        ${index + 1} ${sortMovie[index]}
+    movieDB.movies.sort().forEach((item, index) => {
+
+        const li = document.createElement("li");
+
+        li.className = "promo__interactive-item";
+        li.dataset.index = index;
+        li.innerHTML = `
+        ${index + 1} ${sortMovie[index].slice(0, 23)}
         <div class="delete"></div>
     `;
 
-    movieList.appendChild(li);
-});
-
-
-
-document.querySelectorAll(".delete").forEach(button => {
-    button.addEventListener("click", (e) => {
-        e.target.closest(".promo__interactive-item").remove();
+        movieList.appendChild(li);
     });
-});
 
-const checkboxItem = document.querySelector('input[type="checkbox"]');
+    document.querySelector('button').addEventListener('click', createFilm);
 
-checkboxItem.addEventListener('change', (e) => {
-    e.preventDefault();
+    document.querySelectorAll(".delete").forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.target.closest(".promo__interactive-item").remove();
+        });
+    });
+}
 
-    if (checkboxItem.checked) {
-        console.log('Добавляем любимый фильм!');
-    }else{console.log('Ошибка, попробуйте позже.')}
-})
+filterMovie();
+
+function createFilm(event) {
+    event.preventDefault();
+
+    const input = document.querySelector('.adding__input');
+    const checkboxItem = document.querySelector('input[type="checkbox"]');
+
+    if (input.value.length > 0 && checkboxItem.checked) {
+        movieDB.movies.push(input.value);
+        movieDB.movies.sort();
+        filterMovie();
+        console.log(input.value);
+        console.log(movieDB.movies);
+    } else {console.log("no");}
+
+    checkboxItem.addEventListener('change', (e) => {
+        e.preventDefault();
+
+        if (checkboxItem.checked) {
+            console.log('Добавляем любимый фильм!');
+        }else{console.log('Фильм не добавлен.')}
+    })
+}
+
