@@ -62,3 +62,13 @@ promoItem.forEach((item, index) => {
         </li>
     `
 })
+
+const checkboxItem = document.querySelector('input[type="checkbox"]');
+
+checkboxItem.addEventListener('change', (e) => {
+    e.preventDefault();
+
+    if (checkboxItem.checked) {
+        console.log('Добавляем любимый фильм!');
+    }else{console.log('Ошибка, попробуйте позже.')}
+})
