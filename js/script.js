@@ -26,8 +26,6 @@ const movieDB = {
 
 
 // первая задача ---------- выполнено
-
-const adsContainer = document.querySelector('.promo__adv');
 const ads = document.querySelectorAll('img');
 ads.forEach(ad => {
     ad.remove()
@@ -47,11 +45,6 @@ promoBg.style.backgroundImage = `url(../img/bg.jpg)`;
 // четвертая задача + пятая задача ---------- выполнено
 
 const sortMovie = movieDB.movies.sort();
-
-const promoItem = document.querySelectorAll('.promo__interactive-item');
-// promoItem.forEach((item, index) => {
-//     item.textContent = `${index + 1} ${sortMovie[index]}`;
-// })
 
 function filterMovie() {
     const movieList = document.querySelector('.promo__interactive-list');
