@@ -56,12 +56,24 @@ const movieList = document.querySelector('.promo__interactive-list');
 movieList.innerHTML = '';
 
 promoItem.forEach((item, index) => {
-    movieList.innerHTML += `
-         <li class="promo__interactive-item"> ${index +1} ${sortMovie[index]} 
-            <div class="delete"></div>
-        </li>
-    `
-})
+    const li = document.createElement("li");
+    li.className = "promo__interactive-item";
+    li.dataset.index = index;
+    li.innerHTML = `
+        ${index + 1} ${sortMovie[index]}
+        <div class="delete"></div>
+    `;
+
+    movieList.appendChild(li);
+});
+
+
+
+document.querySelectorAll(".delete").forEach(button => {
+    button.addEventListener("click", (e) => {
+        e.target.closest(".promo__interactive-item").remove();
+    });
+});
 
 const checkboxItem = document.querySelector('input[type="checkbox"]');
 
