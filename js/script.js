@@ -60,11 +60,14 @@ function filterMovie() {
     movieDB.movies.sort().forEach((item, index) => {
 
         const li = document.createElement("li");
-
+        let itemLi = sortMovie[index];
+        if (itemLi.length > 21) {
+            itemLi = sortMovie[index].slice(0, 21) + '...';
+        }
         li.className = "promo__interactive-item";
         li.dataset.index = index;
         li.innerHTML = `
-        ${index + 1} ${sortMovie[index].slice(0, 23)}
+        ${index + 1} ${itemLi}
         <div class="delete"></div>
     `;
 
